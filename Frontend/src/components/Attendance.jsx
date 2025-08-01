@@ -17,26 +17,28 @@ const Attendance = ({ students, setStudents }) => {
   };
 
   return (
-    <div className="bg-white p-6 rounded-xl shadow mb-6">
-      <h3 className="text-lg font-bold text-gray-700 mb-4">
+    <div className="bg-white p-4 sm:p-6 rounded-xl shadow mb-6 mt-20">
+      <h3 className="text-base sm:text-lg font-bold text-gray-700 mb-4">
         Attendance (Today)
       </h3>
       <div className="space-y-3">
         {students.map((s) => (
           <div
             key={s.id}
-            className="flex items-center justify-between bg-gray-50 p-3 rounded-lg"
+            className="flex flex-col sm:flex-row sm:items-center justify-between bg-gray-50 p-3 rounded-lg gap-3"
           >
-            <span className="font-medium text-gray-800">{s.name}</span>
-            <div className="space-x-2">
+            <span className="font-medium text-gray-800 text-sm sm:text-base truncate">
+              {s.name}
+            </span>
+            <div className="flex space-x-2 sm:space-x-3">
               <button
-                className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
+                className="bg-green-500 text-white px-2 py-1 sm:px-3 sm:py-1 rounded text-xs sm:text-sm hover:bg-green-600 transition-colors duration-200 flex-1 sm:flex-none min-w-[60px] sm:min-w-[80px]"
                 onClick={() => markAttendance(s.id, true)}
               >
                 Present
               </button>
               <button
-                className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                className="bg-red-500 text-white px-2 py-1 sm:px-3 sm:py-1 rounded text-xs sm:text-sm hover:bg-red-600 transition-colors duration-200 flex-1 sm:flex-none min-w-[60px] sm:min-w-[80px]"
                 onClick={() => markAttendance(s.id, false)}
               >
                 Absent

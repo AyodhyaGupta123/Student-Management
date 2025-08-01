@@ -13,33 +13,48 @@ const App = () => {
   const [students, setStudents] = useState([
     {
       id: 1,
-      name: "Amit Sharma",
-      class: "10th",
+      name: "Ayodhya Gupta",
+      class: "ADCA",
       pendingFees: 2000,
       fees: { total: 5000, paid: 3000 },
       attendance: [],
-      subjectsToday: "Math - Algebra",
+      subjectsToday: "C++,EXCEL,JAVA,PYTHON",
     },
     {
       id: 2,
-      name: "Riya Verma",
-      class: "9th",
-      pendingFees: 0,
-      fees: { total: 4000, paid: 4000 },
+      name: "Sateesh Kumar",
+      class: "ADCA",
+      pendingFees:2000,
+      fees: { total: 4000, paid: 2000 },
       attendance: [],
-      subjectsToday: "Science - Physics",
+      subjectsToday: "C++,EXCEL,JAVA,PYTHON",
     },
   ]);
+
+  const [sidebarOpen, setSidebarOpen] = useState(() => {
+    // Initialize from localStorage or default to true
+    try {
+      const saved = localStorage.getItem('sidebarOpen');
+      return saved !== null ? JSON.parse(saved) : true;
+    } catch (error) {
+      // If there's an error parsing, clear the invalid value and return default
+      localStorage.removeItem('sidebarOpen');
+      return true;
+    }
+  });
 
   return (
     <Router>
       <div className="flex flex-col h-screen">
-        <Navbar />
-        <div className="flex flex-1">
-          <div className="w-60 bg-gray-50">
-            <Sidebar />
-          </div>
-          <div className="flex-1 bg-gray-100 p-6 overflow-y-auto">
+        <Navbar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+        <div className="flex flex-1 relative">
+          {/* Responsive Sidebar */}
+          <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
+          
+          {/* Main Content Area - Responsive layout */}
+          <div className={`flex-1 bg-gray-100 p-4 lg:p-6 overflow-y-auto transition-all duration-300 ease-in-out ${
+            sidebarOpen ? 'lg:ml-64' : 'lg:ml-20'
+          }`}>
             <Routes>
               <Route path="/" element={<HomePage students={students} />} />
               <Route

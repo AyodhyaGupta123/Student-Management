@@ -14,7 +14,7 @@ const StudentDetails = ({ students }) => {
     );
 
   return (
-    <div className="bg-white p-6 rounded-xl shadow">
+    <div className="bg-white p-6 rounded-xl shadow mt-20">
       <h2 className="text-xl font-bold text-gray-800 mb-2">{student.name}</h2>
       <p className="text-gray-600 mb-2">Class: {student.class}</p>
       <p className="text-gray-600 mb-2">Subjects Today: {student.subjectsToday}</p>
